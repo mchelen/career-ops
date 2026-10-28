@@ -93,6 +93,13 @@ export const SHORT_SPECIALTY = new Set([
   'api', 'sre', 'sdk', 'cli', 'gpu', 'cpu',
   'ios', 'qa', 'ux', 'ui', 'ar', 'vr',
   'ocr', 'crm', 'erp',
+  // Team/mission and city qualifiers that ride at the end of templated titles
+  // ("Forward Deployed Engineer - SF" / "... - NYC" / "..., Gov" / "... (FDE)").
+  // extractShortAcronyms() only distinguishes all-caps acronyms present on BOTH
+  // sides, so a title-case "Gov" against an "SF" variant still collapses to the
+  // shared skeleton and fuzzy-matches. Keeping these as specialty tokens makes
+  // repetitive city/track variants split instead of merging into one opening.
+  'gov', 'sf', 'nyc', 'fde',
 ]);
 
 // Generic role-level descriptors. Two titles whose only overlap is in this set
